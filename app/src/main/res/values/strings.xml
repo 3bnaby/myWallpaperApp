@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">my Wallpaper App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="categories">categories</string>
+    <string name="category">category</string>
+    <string name="download">Download</string>
+    <string name="set_homescreen">Set HomeScreen</string>
+    <string name="set_loacscreen">set LoacScreen</string>
+    <string name="retry">Retry</string>
+</resources>

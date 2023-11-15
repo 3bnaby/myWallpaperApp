@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="Content Description"
+            android:src="@drawable/baseline_menu_24"/>
+        <Button
+            android:id="@+id/DownloadFromNet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:drawableStart="@drawable/baseline_download_24"
+            android:drawablePadding="@dimen/_70sdp"
+            android:fontFamily="@fonts/actor"
+            android:gravity="start|center_vertical"
+            android:text="@string/download"
+            android:textSize="@dimen/_12ssp"
+            android:textAllCaps="false"/>
+        <Button
+            android:id="@+id/setAsBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:drawableStart="@drawable/baseline_image_24"
+            android:drawablePadding="@dimen/_70sdp"
+            android:fontFamily="@fonts/actor"
+            android:gravity="start|center_vertical"
+            android:text="@string/set_homescreen"
+            android:textSize="@dimen/_12ssp"
+            android:textAllCaps="false"/>
+        <Button
+            android:id="@+id/setAsLockscreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:drawableStart="@drawable/baseline_image_24"
+            android:drawablePadding="@dimen/_70sdp"
+            android:fontFamily="@fonts/actor"
+            android:gravity="start|center_vertical"
+            android:text="@string/set_loacscreen"
+            android:textSize="@dimen/_12ssp"
+            android:textAllCaps="false"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
