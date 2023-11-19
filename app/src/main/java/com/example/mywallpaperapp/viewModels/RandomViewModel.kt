@@ -1,6 +1,5 @@
 package com.example.mywallpaperapp.viewModels
 
-import android.graphics.pdf.PdfDocument.Page
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
