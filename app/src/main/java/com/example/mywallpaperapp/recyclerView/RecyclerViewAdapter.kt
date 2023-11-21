@@ -3,7 +3,6 @@ package com.example.mywallpaperapp.recyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,9 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.example.mywallpaperapp.R
 import com.example.mywallpaperapp.databinding.ItemRecyclerViewBinding
 import com.example.mywallpaperapp.model.Data
-import com.example.mywallpaperapp.ui.fragments.MainFragmentDirections
 import com.example.mywallpaperapp.utils.BlurHashDecoder
-import com.example.mywallpaperapp.utils.Constants
 
 class RecyclerViewAdapter (private val listener: WallInteractionListener)
     : PagingDataAdapter<Data,RecyclerViewAdapter.MyViewHolder>(DiffUtilCallBack()){

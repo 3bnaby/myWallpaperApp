@@ -34,8 +34,8 @@ class BottomSheetFragment(private val wallUrl :String) : BottomSheetDialogFragme
 
     private fun initButtons(){
         binding.DownloadFromNet.setOnClickListener { downloadImageFromNet (wallUrl)}
-        binding.setAsBackground.setOnClickListener { setAsBackground (Constants.background.homeScreen) }
-        binding.setAsLockscreen.setOnClickListener { setAsBackground (Constants.background.lockSreen) }
+        binding.setAsBackground.setOnClickListener { setAsBackground (Constants.Background.homeScreen) }
+        binding.setAsLockscreen.setOnClickListener { setAsBackground (Constants.Background.lockScreen) }
     }
     private fun downloadImageFromNet(url : String){
         try {

@@ -1,4 +1,4 @@
-package com.example.mywallpaperapp.paging.LoadingState
+package com.example.mywallpaperapp.paging.loadingState
 
 import android.view.ViewGroup
 import androidx.paging.LoadState

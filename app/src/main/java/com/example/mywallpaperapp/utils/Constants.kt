@@ -1,8 +1,8 @@
 package com.example.mywallpaperapp.utils
 
 object Constants {
-   object background{
+   object Background{
        const val homeScreen = 1
-       const val lockSreen = 2
+       const val lockScreen = 2
    }
 }

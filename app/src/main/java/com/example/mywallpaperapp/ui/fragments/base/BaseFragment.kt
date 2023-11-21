@@ -11,10 +11,9 @@ import androidx.navigation.Navigation
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.viewbinding.ViewBinding
 import com.example.mywallpaperapp.databinding.FragmentHomeBinding
 import com.example.mywallpaperapp.model.Data
-import com.example.mywallpaperapp.paging.LoadingState.LoaderStateAdapter
+import com.example.mywallpaperapp.paging.loadingState.LoaderStateAdapter
 import com.example.mywallpaperapp.recyclerView.RecyclerViewAdapter
 import com.example.mywallpaperapp.recyclerView.WallInteractionListener
 import com.example.mywallpaperapp.ui.fragments.MainFragmentDirections
@@ -37,7 +36,7 @@ abstract class BaseFragment : Fragment() , WallInteractionListener{
     }
     abstract fun initViewModel()
 
-    fun recyclerView(){
+    private fun recyclerView(){
         val layoutManager = GridLayoutManager(context,3)
         binding.homeRecyclerView.layoutManager = layoutManager
         binding.homeRecyclerView.adapter = recyclerViewAdapter.withLoadStateHeaderAndFooter(
@@ -56,7 +55,7 @@ abstract class BaseFragment : Fragment() , WallInteractionListener{
         }
     }
 
-    fun handleError (loadState : CombinedLoadStates){
+    private fun handleError (loadState : CombinedLoadStates){
         val errorState = loadState.source.append as? LoadState.Error
             ?: loadState.source.prepend as? LoadState.Error
 
