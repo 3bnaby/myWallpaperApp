@@ -10,21 +10,21 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.example.mywallpaperapp.R
 import com.example.mywallpaperapp.databinding.ItemRecyclerViewBinding
-import com.example.mywallpaperapp.model.Data
+import com.example.mywallpaperapp.model.Wallpaper
 import com.example.mywallpaperapp.utils.BlurHashDecoder
 
 class RecyclerViewAdapter (private val listener: WallInteractionListener)
-    : PagingDataAdapter<Data,RecyclerViewAdapter.MyViewHolder>(DiffUtilCallBack()){
+    : PagingDataAdapter<Wallpaper,RecyclerViewAdapter.MyViewHolder>(DiffUtilCallBack()){
     inner class MyViewHolder(view:View) :RecyclerView.ViewHolder(view) {
         private val binding = ItemRecyclerViewBinding.bind(view)
 
-        fun bind(data: Data) {
+        fun bind(wallpaper: Wallpaper) {
 
-            val blurHashAsDrawable = BlurHashDecoder.blurHashBitmap(itemView.resources,data)
+            val blurHashAsDrawable = BlurHashDecoder.blurHashBitmap(itemView.resources,wallpaper)
 
             Glide.with(itemView.context)
                 .asBitmap()
-                .load(data.smallImageUrl)
+                .load(wallpaper.photoUrls.regular)
                 .centerCrop()
                 .transition(BitmapTransitionOptions.withCrossFade(80))
                 .error(blurHashAsDrawable)
@@ -32,7 +32,7 @@ class RecyclerViewAdapter (private val listener: WallInteractionListener)
                 .into(binding.imageView)
 
             itemView.setOnClickListener{
-                listener.onClickItem(data ,it)
+                listener.onClickItem(wallpaper ,it)
 
             }
         }
@@ -47,12 +47,12 @@ class RecyclerViewAdapter (private val listener: WallInteractionListener)
         return MyViewHolder(inflater)
     }
 
-    class DiffUtilCallBack : DiffUtil.ItemCallback<Data>(){
-        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
-            return oldItem.blurHash == newItem.blurHash
+    class DiffUtilCallBack : DiffUtil.ItemCallback<Wallpaper>(){
+        override fun areItemsTheSame(oldItem: Wallpaper, newItem: Wallpaper): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+        override fun areContentsTheSame(oldItem: Wallpaper, newItem: Wallpaper): Boolean {
             return oldItem == newItem
         }
 

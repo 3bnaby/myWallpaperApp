@@ -15,7 +15,7 @@ import com.example.mywallpaperapp.utils.BlurHashDecoder
 
 class DownloadFragment : Fragment() {
     private lateinit var binding: FragmentDownloadBinding
-    private val args : DownloadFragmentArgs by navArgs()
+    private val args: DownloadFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -29,7 +29,7 @@ class DownloadFragment : Fragment() {
         return binding.root
     }
 
-    private fun loadImage (url:String){
+    private fun loadImage(url: String) {
         val blurHash = BlurHashDecoder.decode(args.imageData[1])
         Glide.with(this)
             .load(url)
@@ -37,19 +37,19 @@ class DownloadFragment : Fragment() {
             .placeholder(blurHash?.toDrawable(this.resources))
             .error(blurHash)
             .into(binding.downloadImageView)
-        binding.ConstraintBackGround.background = BitmapDrawable(this.resources , blurHash)
+        binding.ConstraintBackGround.background = BitmapDrawable(this.resources, blurHash)
     }
 
-    private fun addCallBack(){
-        binding.backButton.setOnClickListener{
+    private fun addCallBack() {
+        binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
     }
 
-    private fun bottomSheet(){
-        val bottomSheet = BottomSheetFragment(args.imageData[0])
-        binding.downloadButton.setOnClickListener{
-            bottomSheet.show(requireActivity().supportFragmentManager,"bottomSheet")
+    private fun bottomSheet() {
+        val bottomSheet = BottomSheetFragment.newInstance(args.imageData[0])
+        binding.downloadButton.setOnClickListener {
+            bottomSheet.show(requireActivity().supportFragmentManager, "bottomSheet")
         }
     }
 

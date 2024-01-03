@@ -19,7 +19,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import java.io.File
 import java.io.IOException
 
-class BottomSheetFragment(private val wallUrl :String) : BottomSheetDialogFragment() {
+class BottomSheetFragment : BottomSheetDialogFragment() {
     lateinit var binding: BottomSheetBinding
 
     override fun onCreateView(
@@ -28,18 +28,22 @@ class BottomSheetFragment(private val wallUrl :String) : BottomSheetDialogFragme
         savedInstanceState: Bundle?
     ): View {
         binding = BottomSheetBinding.inflate(inflater)
-        initButtons()
-    return binding.root
+        arguments?.getString("url")?.let { initButtons(it) }
+        return binding.root
     }
 
-    private fun initButtons(){
-        binding.DownloadFromNet.setOnClickListener { downloadImageFromNet (wallUrl)}
-        binding.setAsBackground.setOnClickListener { setAsBackground (Constants.Background.homeScreen) }
-        binding.setAsLockscreen.setOnClickListener { setAsBackground (Constants.Background.lockScreen) }
+    init {}
+
+    private fun initButtons(wallUrl: String) {
+        binding.DownloadFromNet.setOnClickListener { downloadImageFromNet(wallUrl) }
+        binding.setAsBackground.setOnClickListener { setAsBackground(Constants.Background.homeScreen) }
+        binding.setAsLockscreen.setOnClickListener { setAsBackground(Constants.Background.lockScreen) }
     }
-    private fun downloadImageFromNet(url : String){
+
+    private fun downloadImageFromNet(url: String) {
         try {
-            val downloadManager = context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            val downloadManager =
+                context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             val imageUrl = Uri.parse(url)
             val request = DownloadManager.Request(imageUrl).apply {
                 setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
@@ -53,28 +57,40 @@ class BottomSheetFragment(private val wallUrl :String) : BottomSheetDialogFragme
                     )
             }
             downloadManager.enqueue(request)
-            Toast.makeText(context,"Downloading...",Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Downloading...", Toast.LENGTH_LONG).show()
 
-        }catch (e:Exception){
-            Toast.makeText(context,"Image Download Failed ${e.message}",Toast.LENGTH_LONG).show()
+        } catch (e: Exception) {
+            Toast.makeText(context, "Image Download Failed ${e.message}", Toast.LENGTH_LONG).show()
         }
 
     }
 
-    private fun setAsBackground(lockOrBackground : Int){
-            try {
-                val wallpaperManager = WallpaperManager.getInstance(context)
-                val image = activity?.findViewById<ShapeableImageView>(R.id.download_image_view)
-                if (image?.drawable == null){
-                    Toast.makeText(context,"wait to download" ,Toast.LENGTH_LONG).show()
-                }else{
-                    val bitmap = (image.drawable as BitmapDrawable).bitmap
-                    wallpaperManager.setBitmap(bitmap,null,true,lockOrBackground)
-                    Toast.makeText(context,"Done",Toast.LENGTH_LONG).show()
-                }
-            }catch (e : IOException){
-                Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+    private fun setAsBackground(lockOrBackground: Int) {
+        try {
+            val wallpaperManager = WallpaperManager.getInstance(context)
+            val image = requireActivity().findViewById<ShapeableImageView>(R.id.download_image_view)
+            if (image?.drawable == null) {
+                Toast.makeText(context, "wait to download", Toast.LENGTH_LONG).show()
+            } else {
+                val bitmap = (image.drawable as BitmapDrawable).bitmap
+                wallpaperManager.setBitmap(bitmap, null, true, lockOrBackground)
+                Toast.makeText(context, "Done", Toast.LENGTH_LONG).show()
             }
+        } catch (e: IOException) {
+            Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
         }
+    }
+
+
+    companion object {
+        fun newInstance(url: String?): BottomSheetFragment {
+            val sheetFragment = BottomSheetFragment()
+            val args = Bundle()
+            args.putString("url", url)
+            sheetFragment.arguments = args
+            return sheetFragment
+        }
+    }
+
 
 }

@@ -4,7 +4,7 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
-import com.example.mywallpaperapp.model.Data
+import com.example.mywallpaperapp.model.Wallpaper
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.pow
@@ -12,7 +12,7 @@ import kotlin.math.withSign
 
 
 object BlurHashDecoder {
-    fun blurHashBitmap(resources: Resources, attachment:  Data?): BitmapDrawable {
+    fun blurHashBitmap(resources: Resources, attachment:  Wallpaper?): BitmapDrawable {
         return BitmapDrawable(
             resources,
             decode(
