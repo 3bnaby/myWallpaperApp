@@ -14,8 +14,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MainFragment : Fragment() {
 
-    private val tabTitles = listOf("Home","Popular","Random","Categories")
-    private val fragments = listOf(HomeFragment(),PopularFragment(),RandomFragment(),CategoriesFragment())
+    private val tabTitles = listOf("Home","Popular","Categories")
+    private val fragments = listOf(HomeFragment(),PopularFragment(),CategoriesFragment())
 
     private lateinit var binding:FragmentMainBinding
     override fun onCreateView(

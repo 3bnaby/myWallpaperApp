@@ -12,7 +12,7 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mywallpaperapp.databinding.FragmentHomeBinding
-import com.example.mywallpaperapp.model.Data
+import com.example.mywallpaperapp.model.Wallpaper
 import com.example.mywallpaperapp.paging.loadingState.LoaderStateAdapter
 import com.example.mywallpaperapp.recyclerView.RecyclerViewAdapter
 import com.example.mywallpaperapp.recyclerView.WallInteractionListener
@@ -63,8 +63,8 @@ abstract class BaseFragment : Fragment() , WallInteractionListener{
             Toast.makeText(context , "try again later" , Toast.LENGTH_LONG).show()
         }
     }
-    override fun onClickItem(data: Data, view: View) {
-        val imageData=arrayOf(data.fullImageUrl.toString(), data.blurHash.toString())
+    override fun onClickItem(wallpaper: Wallpaper, view: View) {
+        val imageData=arrayOf(wallpaper.photoUrls.regular.toString(), wallpaper.blurHash.toString())
         Navigation.findNavController(view)
             .navigate(
                 MainFragmentDirections.actionMainFragmentToDownloadFragment(
